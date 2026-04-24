@@ -1,0 +1,60 @@
+### Event-Driven Architecture (EDA)
+
+**Khái niệm**
+
+* Hệ thống giao tiếp với nhau bằng **event (sự kiện)**
+* Component chỉ **phát event**, component khác **lắng nghe và xử lý**
+
+**Flow**
+
+* Service A phát event → Event Bus → Service B/C/D xử lý
+
+**Ví dụ**
+
+* `OrderCreated`
+
+  * Email Service gửi mail
+  * Payment Service xử lý thanh toán
+  * Inventory Service trừ kho
+
+**Ưu điểm**
+
+* Loose coupling (ít phụ thuộc) 🔗❌
+* Dễ scale 🚀
+* Dễ thêm service mới
+* Phù hợp hệ thống phân tán
+
+**Nhược điểm**
+
+* Khó debug hơn 🧠
+* Xử lý async phức tạp
+* Có thể eventual consistency
+
+**Nhớ nhanh**
+→ *Event-driven = các service nói chuyện qua sự kiện* 🎯
+
+11:26 / 12:40 15. Kết nối H2 database với ứng dụng Spring Boot
+
+21:35 / 42:22: 20. Dispatch Query & Query Handler với API Get All Book và Get Detail Book
+
+
+build Maven mà bỏ qua test: mvn clean install -DskipTests
+====================================================Add project common dungf chu=============================================================
+1. xóa file build trong commonservice 
+2. mvn clean install -DskipTests để tạo file jar
+3. thêm dependecy vào service cần sử dụng
+<dependency>
+	<groupId>com.example</groupId>
+	<artifactId>commonservice</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+</dependency>
+4. build lại project: mvn clean install -DskipTests
+====================================================Scan project=============================================================
+@SpringBootApplication => Spring tự scan từ package của main class xuống dưới
+❌ Nhưng khi bạn thêm: @ComponentScan("com.example.commonservice") => Spring BỎ cơ chế mặc định, chỉ scan mỗi commonservice
+🔥 Nên bạn buộc phải làm:
+@ComponentScan({
+    "com.example.bookservice",
+    "com.example.commonservice"
+})
+👉 để “bù lại” những gì bạn đã override
