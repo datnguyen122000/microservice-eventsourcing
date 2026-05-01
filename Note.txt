@@ -58,3 +58,9 @@ build Maven mà bỏ qua test: mvn clean install -DskipTests
     "com.example.commonservice"
 })
 👉 để “bù lại” những gì bạn đã override
+====================================================Import module====================================================
+File -> Project Structure -> + -> Import Module -> file pom
+
+====================================================build maven bỏ qua test====================================================
+mvn clean install -DskipTests
+
