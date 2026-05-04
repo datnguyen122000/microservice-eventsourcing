@@ -64,3 +64,7 @@ File -> Project Structure -> + -> Import Module -> file pom
 ====================================================build maven bỏ qua test====================================================
 mvn clean install -DskipTests
 
+@DisallowReplay Đánh dấu handler đó: “Chỉ chạy khi event mới xảy ra, KHÔNG chạy khi replay” 
+
+
+
