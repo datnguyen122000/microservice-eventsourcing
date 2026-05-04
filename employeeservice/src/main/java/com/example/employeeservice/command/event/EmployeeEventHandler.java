@@ -31,4 +31,10 @@ public class EmployeeEventHandler {
         employee.setIsDisciplined(event.getIsDisciplined());
         employeeRepository.save(employee);
     }
+
+    @EventHandler
+    public void on(EmployeeDeletedEvent event) throws Exception{
+        employeeRepository.findById(event.getId()).orElseThrow(()-> new Exception("Employee not found"));
+        employeeRepository.deleteById(event.getId());
+    }
 }

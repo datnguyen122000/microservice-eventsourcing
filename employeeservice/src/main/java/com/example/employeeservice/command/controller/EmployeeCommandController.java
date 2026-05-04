@@ -1,6 +1,7 @@
 package com.example.employeeservice.command.controller;
 
 import com.example.employeeservice.command.command.CreateEmployeeCommand;
+import com.example.employeeservice.command.command.DeleteEmployeeCommand;
 import com.example.employeeservice.command.command.UpdateEmployeeCommand;
 import com.example.employeeservice.command.model.CreateEmployeeModel;
 import com.example.employeeservice.command.model.UpdateEmployeeModel;
@@ -26,6 +27,12 @@ public class EmployeeCommandController {
     @PutMapping("/{employeeId}")
     public String updateBook(@RequestBody UpdateEmployeeModel model, @PathVariable String employeeId){
         UpdateEmployeeCommand command = new UpdateEmployeeCommand(employeeId, model.getFirstName(), model.getLastName(), model.getKin(), model.getIsDisciplined());
+        return commandGateway.sendAndWait(command);
+    }
+
+    @DeleteMapping("/{employeeId}")
+    public String updateBook(@PathVariable String employeeId){
+        DeleteEmployeeCommand command = new DeleteEmployeeCommand(employeeId);
         return commandGateway.sendAndWait(command);
     }
 }
