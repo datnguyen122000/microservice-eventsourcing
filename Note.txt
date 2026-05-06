@@ -91,7 +91,7 @@ Lambda:
 => Stream = xử lý dữ liệu kiểu pipeline (gọn hơn for)
 
 ví dụ:
-	@QueryHandler
+	@QueryHandler 	
     public List<BookResponseModel> handle(GetAllBookQuery query){
         List<Book> list = bookRepository.findAll();
         List<BookResponseModel> listBookResponse = new ArrayList<>();
@@ -102,6 +102,17 @@ ví dụ:
         });
         return listBookResponse;
     }
+	
+	<dependency>
+		<groupId>org.springdoc</groupId>
+		<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+		<version>2.6.0</version>
+	</dependency>
+	phải đi kèm với để không lỗi
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-validation</artifactId>
+	</dependency>
 
 
 
