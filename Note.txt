@@ -66,5 +66,44 @@ mvn clean install -DskipTests
 
 @DisallowReplay Đánh dấu handler đó: “Chỉ chạy khi event mới xảy ra, KHÔNG chạy khi replay” 
 
+====================================================Java Stream====================================================
+Java Stream:
+
+- stream() = List → luồng xử lý
+
+list.stream()
+    .map(...)
+    .filter(...)
+    .toList();
+
+- map(): biến đổi (A -> B) → phải return
+- filter(): lọc
+- toList(): trả về List
+
+So với for:
+- for: add vào list
+- stream: return trong map để tạo list mới
+
+Lambda:
+- 1 dòng: e -> convert(e)
+- nhiều dòng: { ...; return result; }
+
+=> Stream = xử lý dữ liệu kiểu pipeline (gọn hơn for)
+
+ví dụ:
+	@QueryHandler
+    public List<BookResponseModel> handle(GetAllBookQuery query){
+        List<Book> list = bookRepository.findAll();
+        List<BookResponseModel> listBookResponse = new ArrayList<>();
+        list.forEach(book ->{
+            BookResponseModel model = new BookResponseModel();
+            BeanUtils.copyProperties(book, model);
+            listBookResponse.add(model);
+        });
+        return listBookResponse;
+    }
+
+
+
 
 
