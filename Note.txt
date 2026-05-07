@@ -115,6 +115,15 @@ ví dụ:
 	</dependency>
 
 
+API Gateway map/routing request tới service tương ứng.
+Ví dụ: 
+/api/users     -> User Service
+/api/orders    -> Order Service
+/api/payment   -> Payment Service
+Mấy API Gateway phổ biến hiện nay: Kong, Spring Cloud Gateway, AWS API Gateway,...
+
+http://localhost:8761/ : kiểm tra những cái nào đăng kí với eureka
+
 
 
 
