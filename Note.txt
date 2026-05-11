@@ -124,6 +124,16 @@ Mấy API Gateway phổ biến hiện nay: Kong, Spring Cloud Gateway, AWS API G
 
 http://localhost:8761/ : kiểm tra những cái nào đăng kí với eureka
 
-
+====================================================Rate Limiting====================================================
+Config của Redis rate limiter trong Spring Cloud Gateway, dùng cơ chế kiểu token bucket.
+   filters:
+          - name: RequestRateLimiter
+            args:
+              redis-rate-limiter.replenishRate: 500			: mỗi giây bucket được nạp thêm 500 token
+              redis-rate-limiter.burstCapacity: 1000		: sức chứa tối đa của bucket
+              redis-rate-limiter.requestedTokens: 1			: Mỗi request cần bao nhiêu token để được phép đi qua.
+			  
+====================================================Tạo redis====================================================			  
+docker run --name redis -p 6379:6379 -d redis
 
 
