@@ -136,4 +136,14 @@ Config của Redis rate limiter trong Spring Cloud Gateway, dùng cơ chế ki�
 ====================================================Tạo redis====================================================			  
 docker run --name redis -p 6379:6379 -d redis
 
+Apache JMeter Download
+ — tool test hiệu năng/load test API & server.
+Link download: https://jmeter.apache.org/download_jmeter.cgi
 
+====================================================API Key và JWT====================================================	
+So sánh nhanh
+	API Key = 1 chuỗi cố định, không biết user là ai
+	JWT = token có dữ liệu user + có hạn dùng
+Trong hệ thống
+	apiKey → thường check ở gateway (KeyAuthFilter)
+	Bearer token → thường là JWT ở backend
